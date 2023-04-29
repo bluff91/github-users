@@ -12,7 +12,6 @@ const Info = () => {
       following,
     },
   } = useAppContext()
-  console.log(followers, gists, repos, following)
 
   return (
     <section className="section">

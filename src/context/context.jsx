@@ -14,7 +14,7 @@ export const AppProvider = ({ children }) => {
   const [githubUser, setGithubUser] = useState(mockUser)
   const [repos, setRepos] = useState(mockRepos)
   const [followers, setFollowers] = useState(mockFollowers)
-  console.log(githubUser)
+
   return (
     <AppContext.Provider
       value={{
