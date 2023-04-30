@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md'
 import { useAppContext } from '../context/context'
+import { NavLink } from 'react-router-dom'
 
 const Card = () => {
   const { githubUser } = useAppContext()
@@ -36,7 +37,7 @@ const Card = () => {
           {location}
         </p>
         {blog && (
-          <a href={`https://${blog}`}>
+          <a href={blog.startsWith('https') ? `${blog}` : `https://${blog}`}>
             <MdLink />
             {blog}
           </a>

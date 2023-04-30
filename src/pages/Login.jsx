@@ -1,13 +1,18 @@
 import styled from 'styled-components'
 import loginImg from '../images/login-img.svg'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const Login = () => {
+  const { loginWithRedirect } = useAuth0()
+
   return (
     <Wrapper>
       <div className="container">
         <img src={loginImg} alt="" />
         <h1>github user</h1>
-        <button className="btn">Login</button>
+        <button className="btn" onClick={loginWithRedirect}>
+          Login
+        </button>
       </div>
     </Wrapper>
   )

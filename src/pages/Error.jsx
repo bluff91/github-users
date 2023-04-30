@@ -7,7 +7,9 @@ const Error = () => {
       <div>
         <h1>404</h1>
         <h3>Cannot access the resource</h3>
-        <NavLink className="btn">Back Home</NavLink>
+        <NavLink to="/" className="btn">
+          Back Home
+        </NavLink>
       </div>
     </Wrapper>
   )
