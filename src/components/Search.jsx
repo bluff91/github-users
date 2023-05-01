@@ -11,7 +11,6 @@ const Search = () => {
     e.preventDefault()
     if (user) {
       serchGithubUser(user)
-      console.log(user)
     }
   }
 

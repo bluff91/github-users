@@ -31,7 +31,7 @@ export const AppProvider = ({ children }) => {
 
         setRequests(remaining)
         if (remaining === 0) {
-          toggleError(true, 'Sorry, you have exeeded your hourly rate limit')
+          toggleError(true, 'Sorry, you have exceeded your hourly rate limit')
         }
       })
       .catch((err) => {
@@ -48,34 +48,37 @@ export const AppProvider = ({ children }) => {
   const serchGithubUser = async (user) => {
     setLoading(true)
     try {
-      const response1 = axios.get(`${rootUrl}/users/${user}`)
-      const response2 = axios.get(
-        `${rootUrl}/users/${user}/followers?per_page=100`
-      )
-      const response3 = axios.get(`${rootUrl}/users/${user}/repos?per_page=100`)
-      await Promise.allSettled([response1, response2, response3])
-        .then((data) => {
-          const [user, followers, repos] = data
-          if (user.status === 'fulfilled') {
-            setGithubUser(user.value.data)
-          }
+      const response1 = await axios.get(`${rootUrl}/users/${user}`)
+      if (response1.status === 200) {
+        const response2 = axios.get(
+          `${rootUrl}/users/${user}/followers?per_page=100`
+        )
+        const response3 = axios.get(
+          `${rootUrl}/users/${user}/repos?per_page=100`
+        )
+        await Promise.allSettled([response1, response2, response3])
+          .then((data) => {
+            const [user, followers, repos] = data
+            if (user.status === 'fulfilled') {
+              setGithubUser(user.value.data)
+            }
 
-          if (followers.status === 'fulfilled') {
-            setFollowers(followers.value.data)
-          }
-          if (repos.status === 'fulfilled') {
-            setRepos(repos.value.data)
-          }
-        })
-        .catch((err) => console.log(err))
-
-      checkRequests()
-      setLoading(false)
-      toggleError()
+            if (followers.status === 'fulfilled') {
+              setFollowers(followers.value.data)
+            }
+            if (repos.status === 'fulfilled') {
+              setRepos(repos.value.data)
+            }
+          })
+          .catch((err) => console.log(err))
+        toggleError()
+      }
     } catch (error) {
+      toggleError(true, 'User not found')
       setLoading(false)
-      setError({ show: true, msg: error.message })
     }
+    checkRequests()
+    setLoading(false)
   }
 
   return (
