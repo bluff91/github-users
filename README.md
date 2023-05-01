@@ -1,12 +1,12 @@
 #### **Search github users project built using React**
 
-##### -Built in login using Auth0
+- ##### Built in login using Auth0
 
-##### -Search for users by using github API
+- ##### Search for users by using github API
 
-##### -Display data using Fusion Charts graphs
+- ##### Display data using Fusion Charts graphs
 
-##### -Most of the styling done using styled components
+- ##### Most of the styling done using styled components
 
 ---
 
